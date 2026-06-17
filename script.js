@@ -9,17 +9,18 @@ function Book (title , author, pageNo, readStatus) { //parameter should describe
     this.isRead = readStatus; //ure just storing the data, not changing it into a behavior
     this.bookId = crypto.randomUUID();
 }
-
+const Book1 = new Book ("The Secret History", "Donna Tartt", 600 , true);
+const Book2 = new Book ("The Invention of Morel", "Adolfo Bioy Casares" , 120, true);
+const Book3 = new Book ("The Kites" , "Romain Gary", 320, false);
 //PARAMETERS: takes a book instance (object)
 function addBookToLibrary (BookInstance) {
     myLibrary.push(BookInstance);
 }
+addBookToLibrary(Book1); 
+addBookToLibrary(Book2);
+addBookToLibrary(Book3);
 
-const Book1 = new Book ("The Secret History", "Donna Tartt", 600 , true);
-const Book2 = new Book ("The Invention of Morel", "Adolfo Bioy Casares" , 120, true);
-const Book3 = newBook ("The Kites" , "Romain Gary", 320, false);
-
-const cardContainer = document.getElementById("container");
+const cardContainer = document.getElementById("cardContainer");
 function displayBook (array) {
     for (const book of array) {
         const card = document.createElement("div");
@@ -36,7 +37,7 @@ function displayBook (array) {
         card.append(cardText);
         cardContainer.append(card);
     }
-
 }
 
+displayBook(myLibrary);
 
