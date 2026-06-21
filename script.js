@@ -49,6 +49,17 @@ displayBook(myLibrary);
 5. create  a new book from user inputs
 6. append new book to myLibrary, then display!*/
 
-function addNewBook () {
-    
-}
+const newBookBtn = document.getElementById("newBookBtn");
+const dialog = document.getElementById("dialog");
+const closeBtn = document.getElementById("normalClose");
+
+newBookBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    dialog.showModal()
+});
+
+closeBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    dialog.close()
+})
+
