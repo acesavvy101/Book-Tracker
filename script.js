@@ -21,20 +21,33 @@ addBookToLibrary(Book2);
 addBookToLibrary(Book3);
 
 const cardContainer = document.getElementById("cardContainer");
+//event delegation (put the event listener inside the parent element)
+cardContainer.addEventListener("click", (e)=> {
+    const item = e.target.closest("button");
+
+})
+
 function displayBook (array) {
     for (const book of array) {
         const card = document.createElement("div");
         const cardText = document.createElement("p");
+        const deleteBtn = document.createElement("button")
+
+        deleteBtn.textContent = "Delete"
+        //link each delete button with the book id
+        deleteBtn.dataset.id = `${book.bookId}`
 
         //u want to display the PROPERTIES of an obj 
         cardText.textContent = //youre assining one string (with 4 lines) to textContent 
             `Title: ${book.title}
             Author: ${book.author}
             Page Number: ${book.pageNo}
-            Read Status: ${book.isRead}`
+            Read Status: ${book.isRead}
+            Book ID: ${book.bookId}`
         //the text content should be each of these books and their attributes
 
         card.append(cardText);
+        card.append(deleteBtn)
         cardContainer.append(card);
     }
 }
