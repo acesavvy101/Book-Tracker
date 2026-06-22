@@ -1,6 +1,5 @@
-const myLibrary = [];
+let myLibrary = [];
 
-//lemme get this straight:
 /*the contructor receives the values, then it stores the values into PROPERTIES */
 function Book (title , author, pageNo, readStatus) { //parameter should describe the meaning not type!
     this.title = title;
@@ -12,6 +11,7 @@ function Book (title , author, pageNo, readStatus) { //parameter should describe
 const Book1 = new Book ("The Secret History", "Donna Tartt", 600 , true);
 const Book2 = new Book ("The Invention of Morel", "Adolfo Bioy Casares" , 120, true);
 const Book3 = new Book ("The Kites" , "Romain Gary", 320, false);
+
 //PARAMETERS: takes a book instance (object)
 function addBookToLibrary (BookInstance) {
     myLibrary.push(BookInstance);
@@ -23,9 +23,14 @@ addBookToLibrary(Book3);
 const cardContainer = document.getElementById("cardContainer");
 //event delegation (put the event listener inside the parent element)
 cardContainer.addEventListener("click", (e)=> {
-    const item = e.target.closest("button");
-
-})
+    const item = e.target.closest("button"); 
+    item.dataset.id //the button already has an ID!
+    
+    //REASSIGNING NOT DECLARING A NEW ONE DUMBASS
+    myLibrary = myLibrary.filter(book => book.bookId !== item.dataset.id); //create a new array with everything that passes the conditional
+    cardContainer.replaceChildren();
+    displayBook(myLibrary)
+});
 
 function displayBook (array) {
     for (const book of array) {
@@ -34,7 +39,7 @@ function displayBook (array) {
         const deleteBtn = document.createElement("button")
 
         deleteBtn.textContent = "Delete"
-        //link each delete button with the book id
+        //link each delete button with the bookinstance id
         deleteBtn.dataset.id = `${book.bookId}`
 
         //u want to display the PROPERTIES of an obj 
@@ -92,3 +97,4 @@ submitBtn.addEventListener("click", (e) =>{
     cardContainer.replaceChildren();
     displayBook(myLibrary)
 })
+
