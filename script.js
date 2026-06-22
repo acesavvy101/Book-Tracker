@@ -47,7 +47,7 @@ displayBook(myLibrary);
 4. button submit onlick, prevent default
 5. create  a new book instance from user inputs
 6. append new bookinstance to addBooktoLibrary which then pushes it into myLibrary arr, then display!
-7. display only the new book!*/
+7. clear display, then render again*/
 
 const newBookBtn = document.getElementById("newBookBtn");
 const dialog = document.getElementById("dialog");
@@ -69,10 +69,13 @@ const authorValue = document.getElementById("authorInput");
 const pageNumberValue = document.getElementById("pageNumberInput");
 const readStatusValue = document.getElementById("readStatusInput");
 
-submitBtn.addEventListener("click", () =>{
-    preventDefault();
+submitBtn.addEventListener("click", (e) =>{
+    e.preventDefault();
     //get the VALUES not textcontent of the inputs
     const newInstance = new Book (titleValue.value, authorValue.value, pageNumberValue.value, readStatusValue.value);
-
     addBookToLibrary(newInstance);
+
+    //clear the previous items in the array to avoid duplicates!
+    cardContainer.replaceChildren();
+    displayBook(myLibrary)
 })
