@@ -38,7 +38,6 @@ function displayBook (array) {
         cardContainer.append(card);
     }
 }
-
 displayBook(myLibrary);
 
 /*initial pseudocode:
@@ -46,12 +45,14 @@ displayBook(myLibrary);
 2.insdie the function , bring up a form where it requires user input
 3.add button submit
 4. button submit onlick, prevent default
-5. create  a new book from user inputs
-6. append new book to myLibrary, then display!*/
+5. create  a new book instance from user inputs
+6. append new bookinstance to addBooktoLibrary which then pushes it into myLibrary arr, then display!
+7. display only the new book!*/
 
 const newBookBtn = document.getElementById("newBookBtn");
 const dialog = document.getElementById("dialog");
-const closeBtn = document.getElementById("normalClose");
+const closeBtn = document.getElementById("closeBtn");
+const submitBtn = document.getElementById("submitBtn");
 
 newBookBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -63,3 +64,15 @@ closeBtn.addEventListener("click", (e) => {
     dialog.close()
 })
 
+const titleValue = document.getElementById("titleInput");
+const authorValue = document.getElementById("authorInput");
+const pageNumberValue = document.getElementById("pageNumberInput");
+const readStatusValue = document.getElementById("readStatusInput");
+
+submitBtn.addEventListener("click", () =>{
+    preventDefault();
+    //get the VALUES not textcontent of the inputs
+    const newInstance = new Book (titleValue.value, authorValue.value, pageNumberValue.value, readStatusValue.value);
+
+    addBookToLibrary(newInstance);
+})

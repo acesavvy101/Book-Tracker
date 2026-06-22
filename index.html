@@ -12,21 +12,21 @@
     <dialog id="dialog">
         <form method="dialog">
             <div id="inputContainer">
-                <label for="Title"> Title:
-                    <input id="Title" type=" text" required>
+                <label> Title:
+                    <input type="text" id="titleInput" required>
                 </label>
-                <label for="Author"> Author:
-                    <input type="text" id="Author" required>
+                <label> Author:
+                    <input type="text" id="authorInput" required>
                 </label>
-                <label for="pageNumber"> Page Number:
-                    <input type="text" id="pageNumber" required>
+                <label> Page Number:
+                    <input type="number" id="pageNumberInput" required>
                 </label>
-                <label for="readStatus"> Read Status:
-                    <input type="text" id="readStatus" required>
+                <label> Read Status:
+                    <input type="text" id="readStatusInput" required>
                 </label>
             </div>
-                <input type="submit">
-                <input type="submit" id="normalClose" value="Normal Close">
+                <input type="submit" id="submitBtn">
+                <input type="submit" id="closeBtn" value="Close">
         </form>
     </dialog>
     <button id="newBookBtn">Enter New Book</button>
