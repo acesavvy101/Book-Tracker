@@ -11,7 +11,7 @@ function Book (title , author, pageNo, readStatus) { //parameter should describe
 
 Book.prototype.toggleStatus = function () {
     //flip the book read status
-    
+    this.isRead =! this.isRead;
 }
 
 const Book1 = new Book ("The Secret History", "Donna Tartt", 600 , true);
@@ -27,17 +27,22 @@ addBookToLibrary(Book2);
 addBookToLibrary(Book3);
 
 const cardContainer = document.getElementById("cardContainer");
+
 //event delegation (put the event listener inside the parent element)
 cardContainer.addEventListener("click", (e)=> {
     const item = e.target.closest("button"); 
     item.dataset.id //the button already has an ID!
+
     if (item.textContent === "Delete") {
-        //REASSIGNING NOT DECLARING A NEW ONE DUMBASS
+            //REASSIGNING NOT DECLARING A NEW ONE DUMBASS
     myLibrary = myLibrary.filter(book => book.bookId !== item.dataset.id); //create a new array with everything that passes the conditional
     cardContainer.replaceChildren();
     displayBook(myLibrary)
     } else {
-        
+    let statusBook = myLibrary.find(book => book.bookId === item.dataset.id); 
+    statusBook.toggleStatus();
+    cardContainer.replaceChildren(); 
+    displayBook(myLibrary)
     } 
 });
 
@@ -47,8 +52,14 @@ function displayBook (array) {
         const cardText = document.createElement("p");
         const deleteBtn = document.createElement("button")
         const readBtn = document.createElement("button")
+        
+        //use book.isRead not this.isRead (cus ure looping through books of arr)
+        if (book.isRead === false) {
+            readBtn.textContent = "Not Read"
+        } else {
+            readBtn.textContent = "Read"
+        }
 
-        readBtn.textContent = "read"
         deleteBtn.textContent = "Delete"
         //link each delete button with the bookinstance id
         deleteBtn.dataset.id = `${book.bookId}`
